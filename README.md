@@ -8,13 +8,22 @@ Instructions as a
 
 ## Windows 
 
-#### VIM
-
-https://www.vim.org/download.php#pc
-
+- https://www.vim.org/download.php#pc
 
 ## OSX
 
 ...
 
+## GIT setup
+
+```
+conda install gh
+```
+
+## VIM setup
+
+
+```
+git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+```
 
