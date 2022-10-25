@@ -8,7 +8,10 @@ Instructions as a
 
 ## Windows 
 
-...
+#### VIM
+
+https://www.vim.org/download.php#pc
+
 
 ## OSX
 
