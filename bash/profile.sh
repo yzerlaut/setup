@@ -44,7 +44,4 @@ load_config
 
 alias reload=load_config
 
-# xmodmap -e "keysym Caps_Lock = Multi_key"
-xmodmap -e "keycode = Multi_key"
-xmodmap -e 'clear Lock'
-
+#xmodmap -e "keysym Caps_Lock = Multi_key"
