@@ -1,10 +1,15 @@
 # quick setup
 
+
 > Instructions for a quick setup of new systems under different platforms
 
 ## Linux (debian-based)
 
-Instructions as a 
+Add to you `~/.bashrc` file the following line:
+
+```
+source /home/yann.zerlaut/work/setup/bash/profile.sh
+```
 
 ## Windows 
 
