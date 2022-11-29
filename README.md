@@ -1,8 +1,12 @@
 # quick setup
 
-
-
 > Instructions for a quick setup of new systems under different platforms
+
+## Get python
+
+Install a miniconda distribution:
+
+https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links
 
 ## Linux (debian-based)
 
@@ -23,6 +27,14 @@ clear Lock
 
 
 ## Windows 
+
+### Install `git`
+
+```
+conda install -c anaconda git
+```
+
+### Install `Vim`
 
 - https://www.vim.org/download.php#pc
 
@@ -46,5 +58,7 @@ First clone the plugin manager on your home directory
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 ```
+
+Then add the [./dot_vimrc](./dot_vimrc) file in your home directory and run vim.
 
 
