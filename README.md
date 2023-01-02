@@ -15,7 +15,7 @@ https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links
 Add to you `~/.bashrc` file the following line:
 
 ```
-source /home/yann.zerlaut/work/setup/bash/profile.sh
+source ~/work/setup/bash/profile.sh
 ```
 
 ### Keyboard / Compose Key
@@ -25,6 +25,13 @@ keycode 66 = Multi_key
 clear Lock  
 ```
 
+### `vi` mode in the linux shell
+
+Add to you `~/.bashrc` file the following line:
+
+```
+set -o vi
+```
 
 ## Windows 
 
@@ -48,7 +55,7 @@ conda install -c anaconda git
 
 Then install and run the github command line interface too to add this token:
 ```
-conda install gh
+conda install gh -c conda-forge
 gh auth login
 ```
 
