@@ -68,4 +68,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 
 Then add the [./dot_vimrc](./dot_vimrc) file in your home directory and run vim.
 
+# Miscellaneous
 
+```
+sudo systemctl mask NetworkManager-wait-online.service
+```
