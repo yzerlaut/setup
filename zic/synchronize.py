@@ -20,28 +20,49 @@ FLM = os.path.join(Phone, 'Android', 'data', 'com.imageline.FLM', 'files')
 Laptop = os.path.join(os.path.expanduser('~'), 'Music')
 audacity_folder = os.path.join(Laptop, 'Audacity')
 flstudio_folder = os.path.join(Laptop, 'FLM-files')
-recordings_folder = os.path.join(FLM, 'My Recordings')
-tracks_src_folder = os.path.join(Laptop, 'Tracks')
-tracks_dest_folder = os.path.join(FLM, 'My Tracks')
-# recordings_folder = os.path.join(os.path.expanduser('~'), 'Music', 'Recordings')
 
-
-# recordings_folder = os.path.join(os.path.expanduser('~'), 'Music', 'Recordings')
-samples_folder = os.path.join(Laptop, 'Samples')
-# tracks_folder = os.path.join(os.path.expanduser('~'), 'Music', 'Tracks')
-songs_folder = os.path.join(os.path.expanduser('~'), 'Music', 'Songs')
-
-# let's look at the content of the Audacity folder and create the song folders in all
+# let's look at the content of the Audacity folder and create the song folders in all Samples and Tracks 
 for song in os.listdir(audacity_folder):
-    for root in [flstudio_folder, recordings_folder, samples_folder, songs_folder,
-                 tracks_src_folder, tracks_dest_folder]:
+    for root in [os.path.join(Laptop, 'Tracks'), os.path.join(FLM, 'My Tracks'),
+                 os.path.join(Laptop, 'Samples'), os.path.join(FLM, 'My Samples')]:
         pathlib.Path(os.path.join(root, song)).mkdir(parents=True, exist_ok=True)
+
+# backup FLM files from Phone to Laptop
+for song in os.listdir(os.path.join(FLM, 'My Songs')):
+    # tracks from Laptop to Phone
+    if os.path.isfile(song):
+        print(' saving "%s" [...] ' % os.path.join(FLM, 'My Songs', song))
+        shutil.copyfile(os.path.join(FLM, 'My Songs', song),
+                        os.path.join(flstudio_folder, song))
+
+
+#######################################
+##   "Samples" from Laptop to Phone  ##
+#######################################
 
 for song in os.listdir(audacity_folder):
     # tracks from Laptop to Phone
-    for track in os.listdir(os.path.join(tracks_src_folder, song)):
-        shutil.copyfile(os.path.join(tracks_src_folder, song, track),
-                        os.path.join(tracks_dest_folder, song, track))
+    for track in os.listdir(os.path.join(Laptop, 'Samples', song)):
+        shutil.copyfile(os.path.join(Laptop, 'Samples', song, track),
+                        os.path.join(FLM, 'My Samples', song, track))
+
+#######################################
+##   "Tracks" from Phone to Laptop   ##
+#######################################
+
+# in root folder
+for track in os.listdir(os.path.join(FLM, 'My Tracks')):
+    if os.path.isfile(os.path.join(FLM, 'My Tracks', track)):
+        shutil.copyfile(os.path.join(FLM, 'My Tracks', track),
+                        os.path.join(Laptop, 'Tracks', track))
+
+# in subfolders
+for song in os.listdir(audacity_folder):
+    # tracks from Phone to Laptop
+    for track in os.listdir(os.path.join(FLM, 'My Tracks', song)):
+        shutil.copyfile(os.path.join(FLM, 'My Tracks', song, track),
+                        os.path.join(Laptop, 'Tracks', song, track))
+
 
 
 
