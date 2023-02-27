@@ -7,6 +7,14 @@ desktop_path="/home/yann.zerlaut"
 desktop_drive_path="/media/yann.zerlaut/DATADRIVE1/"
 desktop_address="yann.zerlaut@ICM-REBOL-LF001.icm-institute.org"
 
+# local 1
+local1_path="/home/yann.zerlaut"
+local1_address="yann.zerlaut@10.0.0.1"
+
+# local 2
+local2_path="/home/yann.zerlaut"
+local2_address="yann.zerlaut@10.0.0.2"
+
 # ICM desktop 2
 desktop2_path="/home/yann.zerlaut"
 desktop2_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
@@ -32,6 +40,14 @@ pick_location() {
 	    desktop)
 		target_address="${desktop_address}"
 		target_dir="${current_dir/$starting_path/$desktop_path}"
+		;;
+	    local1)
+		target_address="${local1_address}"
+		target_dir="${current_dir/$starting_path/$local1_path}"
+		;;
+	    local2)
+		target_address="${local2_address}"
+		target_dir="${current_dir/$starting_path/$local2_path}"
 		;;
 	    desktop2)
 		target_address="${desktop2_address}"
