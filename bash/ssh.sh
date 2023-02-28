@@ -41,11 +41,19 @@ pick_location() {
 		target_address="${desktop_address}"
 		target_dir="${current_dir/$starting_path/$desktop_path}"
 		;;
-	    local1)
+	    10.0.0.1)
 		target_address="${local1_address}"
 		target_dir="${current_dir/$starting_path/$local1_path}"
 		;;
-	    local2)
+	    1)
+		target_address="${local1_address}"
+		target_dir="${current_dir/$starting_path/$local1_path}"
+		;;
+	    10.0.0.2)
+		target_address="${local2_address}"
+		target_dir="${current_dir/$starting_path/$local2_path}"
+		;;
+	    2)
 		target_address="${local2_address}"
 		target_dir="${current_dir/$starting_path/$local2_path}"
 		;;
