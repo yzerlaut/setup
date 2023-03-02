@@ -88,6 +88,19 @@ Then add the [./dot_vimrc](./dot_vimrc) file in your home directory and run vim.
 
 # Miscellaneous
 
+## slow ssh connection
+
+- edit `/etc/ssh/sshd_config`, and set `UseDNS no` ().
+- edit `/etc/nsswitch.conf`, and change this line:
+    ```
+    hosts:          files mdns4_minimal [NOTFOUND=return] dnsA
+    ```
+    to:
+    ```
+    hosts:          files dns
+    ```
+
+## slow login fix 
 ```
 sudo systemctl mask NetworkManager-wait-online.service
 ```
