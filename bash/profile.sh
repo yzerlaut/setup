@@ -3,8 +3,23 @@ starting_path=$HOME
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+qvim() {
+    jupyter qtconsole & 
+    nvim $1
+}
+
 load_config() {
     case "$OSTYPE" in
+	linux*)
+	    alias open="xdg-open"
+	    alias em='emacs -nw -q'
+        set -o vi # Set vi for bash editing mode
+        EDITOR=vi # Set vi as the default editor for all apps that check this
+        source $HOME/work/setup/bash/backup.sh
+	    source $HOME/work/setup/bash/git.sh
+	    source $HOME/work/setup/bash/ssh.sh
+	    source $HOME/work/setup/bash/various.sh
+	    ;;
 	msys*)
 	    alias open="cmd /c start"
 	    alias em="/c/Program\ Files/Emacs/x86_64/bin/runemacs.exe -nw -q"
@@ -17,16 +32,6 @@ load_config() {
 	    ;;
 	cygwin*)
 	    alias open="cmd /c start"
-	    ;;
-	linux*)
-	    alias open="xdg-open"
-	    alias em='emacs -nw -q'
-        set -o vi # Set vi for bash editing mode
-        EDITOR=vi # Set vi as the default editor for all apps that check this
-        source $HOME/work/setup/bash/backup.sh
-	    source $HOME/work/setup/bash/git.sh
-	    source $HOME/work/setup/bash/ssh.sh
-	    source $HOME/work/setup/bash/various.sh
 	    ;;
 	darwin*)
 	    # ---------- INKSCAPE
