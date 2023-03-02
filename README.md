@@ -59,12 +59,13 @@ conda install gh -c conda-forge
 gh auth login
 ```
 
-## `NeoVim` setup
+## `NeoVim` + `jupyter qtconsole` setup: `qvim`
 
 ```
 sudo apt install neovim
 sudo apt install xclip # for copy-paste
 pip install neovim 
+cp ~/work/setup/python/jupyter_qtconsole_config.py ~/.jupyter/
 cp ~/work/setup/init.vim ~/.config/nvim/
 ```
 
