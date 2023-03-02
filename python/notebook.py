@@ -19,8 +19,10 @@ import matplotlib.pylab as plt
 
 # %%
 fig, AX = plt.subplots(1, 3, figsize=(7,1.5))
-plt.subplots_adjust(wspace=0.5, top=.7)
+plt.subplots_adjust(wspace=0.5, top=.7, left=.35)
+fig.patch.set_facecolor('tab:grey')
 AX[0].imshow(np.random.randn(10,10))
+AX[0].set_ylabel('y-label')
 AX[1].scatter(np.arange(100), np.random.randn(100))
 AX[2].plot(np.arange(100), np.linspace(-1,1,100)**2)
 for ax in AX:
