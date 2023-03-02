@@ -33,5 +33,6 @@ AX[2].plot(np.arange(100), np.linspace(-1,1,100)**2)
 for ax in AX:
     ax.set_title('title')
 fig.savefig(os.path.join(os.path.expanduser('~'), 'Desktop', 'fig.png'))
+fig.show()
 
 # %%
