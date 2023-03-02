@@ -90,7 +90,14 @@ Then add the [./dot_vimrc](./dot_vimrc) file in your home directory and run vim.
 
 ## slow ssh connection
 
+
 - edit `/etc/ssh/sshd_config`, and set `UseDNS no` ().
+    also potentially:
+    ```
+    ChallengeResponseAuthentication no
+    KerberosAuthentication no
+    GSSAPIAuthentication no
+    ```
 - edit `/etc/nsswitch.conf`, and change this line:
     ```
     hosts:          files mdns4_minimal [NOTFOUND=return] dnsA
@@ -99,6 +106,8 @@ Then add the [./dot_vimrc](./dot_vimrc) file in your home directory and run vim.
     ```
     hosts:          files dns
     ```
+
+taken from [https://jrs-s.net/2017/07/01/slow-ssh-logins/](jrs-s.net), see more details there.
 
 ## slow login fix 
 ```
