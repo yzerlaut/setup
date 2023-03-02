@@ -18,6 +18,13 @@ Add to you `~/.bashrc` file the following line:
 source ~/work/setup/bash/profile.sh
 ```
 
+Some of the things done, this sets up:
+- some ssh shortcuts
+- ...
+- set up the `vi` mode in the shell: `set -o vi`
+- set up `vim` as the default editor
+-
+
 ### Keyboard / Compose Key
 
 ```
@@ -25,13 +32,6 @@ keycode 66 = Multi_key
 clear Lock  
 ```
 
-### `vi` mode in the linux shell
-
-Add to you `~/.bashrc` file the following line:
-
-```
-set -o vi
-```
 
 ## Windows 
 
@@ -59,13 +59,22 @@ conda install gh -c conda-forge
 gh auth login
 ```
 
+## `NeoVim` setup
+
+```
+sudo apt install neovim
+pip install neovim 
+cp ~/work/setup/init.vim ~/.config/nvim/
+```
+
+#### Plugin Manager
+
+```
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
 ## VIM setup
-
-### Compile VIM
-
-```
-
-```
 
 ### Plugin Manager
 First clone the plugin manager on your home directory
