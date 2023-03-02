@@ -63,6 +63,7 @@ gh auth login
 
 ```
 sudo apt install neovim
+sudo apt install xclip # for copy-paste
 pip install neovim 
 cp ~/work/setup/init.vim ~/.config/nvim/
 ```

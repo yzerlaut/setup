@@ -66,10 +66,10 @@ endfunction
 
 let g:python3_host_prog = '/home/yann.zerlaut/miniconda3/bin/python'
 
-nnoremap <buffer> <silent> <mapleader>X :JupyterSendCell<CR>
-nnoremap <buffer> <silent> <mapleader>E :JupyterSendRange<CR>
-nmap     <buffer> <silent> <mapleader>e <Plug>JupyterRunTextObj
-vmap     <buffer> <silent> <mapleader>e <Plug>JupyterRunVisual
+nnoremap <buffer> <silent> <leader>X :JupyterSendCell<CR>
+nnoremap <buffer> <silent> <leader>E :JupyterSendRange<CR>
+nmap     <buffer> <silent> <leader>e <Plug>JupyterRunTextObj
+vmap     <buffer> <silent> <leader>e <Plug>JupyterRunVisual
 
 
 nnoremap <tab><tab>b :bNext<CR>
