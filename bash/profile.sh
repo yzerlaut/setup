@@ -21,7 +21,9 @@ load_config() {
 	linux*)
 	    alias open="xdg-open"
 	    alias em='emacs -nw -q'
-	    source $HOME/work/setup/bash/backup.sh
+        set -o vi # Set vi for bash editing mode
+        EDITOR=vi # Set vi as the default editor for all apps that check this
+        source $HOME/work/setup/bash/backup.sh
 	    source $HOME/work/setup/bash/git.sh
 	    source $HOME/work/setup/bash/ssh.sh
 	    source $HOME/work/setup/bash/various.sh

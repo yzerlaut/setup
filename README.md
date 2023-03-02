@@ -61,6 +61,13 @@ gh auth login
 
 ## VIM setup
 
+### Compile VIM
+
+```
+
+```
+
+### Plugin Manager
 First clone the plugin manager on your home directory
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
