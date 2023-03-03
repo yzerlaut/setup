@@ -1,5 +1,19 @@
 # Tools
 
+## formatting drive
+
+Use the following command (custom script in (../bash/)):
+```
+format_drive
+```
+
+## making bootable drive
+
+```
+sudo dd if=ubuntustudio-22.04.2-dvd-amd64.iso of=/dev/sdc bs=1M status=progress
+```
+from the following (web page)[https://www.cyberciti.biz/faq/creating-a-bootable-ubuntu-usb-stick-on-a-debian-linux/] 
+
 ## compression of pdfs
 
 ```
