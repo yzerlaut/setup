@@ -1,19 +1,65 @@
 cd $HOME # go to home folder
 
+sudo apt-get update -y
+
 # ===========================
 # create common folders
 # -------------
-mkdir DATA
-mkdir UNPROCESSED
-
-mkdir work 
+mkdir -p DATA
+mkdir -p UNPROCESSED
+mkdir -p work 
 
 sudo apt install git -y
-cd work
-git clone https://github.com/yzerlaut/setup
-cd ..
 
-sudo apt-get update -y
+# ===========================
+# fetch all
+# -------------
+
+if [ -f $HOME/work/setup ];
+then
+    echo "setup repository already clone"
+else
+    cd work
+    git clone https://github.com/yzerlaut/setup
+    cd ..
+fi
+
+# ===========================
+# set up neovim
+# -------------
+
+echo 'set up neovim ? y/[n]'
+read yes_no
+if [ "$yes_no" == 'y' ]
+then
+    mkdir -p .config 
+    mkdir -p .config/nvim
+
+    echo "source $HOME/work/setup/init.vim" > ~/.config/nvim/init.vim
+
+    sudo apt install neovim
+    sudo apt install xclip # for copy-paste
+    sudo apt install curl -y
+    # install plugin manager
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+fi
+
+# ===========================
+# set up jupyter + neovim
+# -------------
+
+echo 'set up jupyter + neovim ? y/[n]'
+read yes_no
+if [ "$yes_no" == 'y' ]
+then
+    conda install jupyter
+    pip install neovim 
+    cp $HOME/work/setup/python/jupyter_qtconsole_config.py $HOME/.jupyter/
+fi
+
+# ===========================
+# set up time 
+# -------------
 
 echo 'set up time info to Europe/Paris ? y/[n]'
 read yes_no
@@ -21,9 +67,12 @@ if [ "$yes_no" == 'y' ]
 then
     sudo timedatectl set-timezone Europe/Paris -y
 fi
+
+
 # ===========================
 # configure git
 # -------------
+
 echo 'Do you want to install and configure git ? y/[n]'
 read yes_no
 if [ "$yes_no" == 'y' ]
@@ -36,6 +85,7 @@ fi
 # ===========================
 # configure ssh
 # -------------
+
 echo 'Do you want to configure the ssh-agent and generate a new ssh key ? y/[n]'
 read yes_no
 if [ "$yes_no" == 'y' ]
@@ -99,18 +149,18 @@ fi
 # ===========================
 # LaTeX
 # -------------
+echo 'Do you need to install LaTeX [BASE] ? y/[n]'
+read yes_no
+if [ "$yes_no" == 'y' ]
+then 
+    sudo apt-get install texlive-base -y
+fi
+
 echo 'Do you need to install LaTeX [FULL] ? y/[n]'
 read yes_no
 if [ "$yes_no" == 'y' ]
 then 
     sudo apt-get install texlive-full -y
-else
-    echo 'Do you need to install LaTeX [BASE] ? y/[n]'
-    read yes_no
-    if [ "$yes_no" == 'y' ]
-    then 
-	sudo apt-get install texlive-base -y
-    fi
 fi
 
 # ===========================
