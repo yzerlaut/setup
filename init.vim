@@ -64,12 +64,10 @@ function! StartUp()
     end
 endfunction
 
-let g:python3_host_prog = '/home/yann.zerlaut/miniconda3/bin/python'
+let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 
-nnoremap <buffer> <silent> <leader>X :JupyterSendCell<CR>
-nnoremap <buffer> <silent> <leader>E :JupyterSendRange<CR>
-nmap     <buffer> <silent> <leader>e <Plug>JupyterRunTextObj
-vmap     <buffer> <silent> <leader>e <Plug>JupyterRunVisual
+nnoremap <buffer> <silent> <leader>x :JupyterSendCell<CR>
+nnoremap <buffer> <silent> <leader>r :JupyterRunFile<CR>
 
 
 nnoremap <tab><tab>b :bNext<CR>
