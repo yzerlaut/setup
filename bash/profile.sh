@@ -49,6 +49,13 @@ load_config() {
 }
 load_config
 
-alias reload=load_config
+# to load the 
+VIMRCFILE='$HOME/work/setup/init.vim'
 
+# caps-lock for "Compose Key"
 #xmodmap -e "keysym Caps_Lock = Multi_key"
+
+# some terminal aliases:
+alias reload=load_config
+alias physion='cd work/physion'
+alias suite2p='conda activate suite2p; python -m suite2p'

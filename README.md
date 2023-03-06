@@ -10,28 +10,30 @@ https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links
 
 ## Linux (debian-based)
 
-### Bash settings
+### 1. Get and Install python
 
-Add to you `~/.bashrc` file the following line:
+Install a miniconda distribution:
+
+https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links
 
 ```
-source ~/work/setup/bash/profile.sh
+bash whatever-your-anaconda-installer-is.sh
+```
+accept all defaults (e.g. update .bashrc)
+
+
+### 2. Run the Setup script !
+
+```
+bash ~/work/setup/tools/debian_setup.py
 ```
 
 Some of the things done, this sets up:
 - some ssh shortcuts
-- ...
 - set up the `vi` mode in the shell: `set -o vi`
 - set up `vim` as the default editor
--
-
-### Keyboard / Compose Key
-
-```
-keycode 66 = Multi_key                                                                                                                                                                        
-clear Lock  
-```
-
+- ...
+- 
 
 ## Windows 
 
@@ -65,11 +67,10 @@ gh auth login
 sudo apt install neovim
 sudo apt install xclip # for copy-paste
 pip install neovim 
-cp ~/work/setup/python/jupyter_qtconsole_config.py ~/.jupyter/
-cp ~/work/setup/init.vim ~/.config/nvim/
+cp $HOME/work/setup/python/jupyter_qtconsole_config.py $HOME/.jupyter/
 ```
 
-#### Plugin Manager
+### Install NeoVim Plugin Manager
 
 ```
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -113,3 +114,5 @@ taken from [https://jrs-s.net/2017/07/01/slow-ssh-logins/](jrs-s.net), see more 
 ```
 sudo systemctl mask NetworkManager-wait-online.service
 ```
+
+
