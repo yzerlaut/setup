@@ -1,6 +1,6 @@
 # laptop
-laptop_path="/home/yann.zerlaut"
-laptop_address="yann.zerlaut@UMR-REBOL-LP001.icm-institute.org"
+laptop_path="/home/yann"
+laptop_address="yann@10.0.0.2"
 
 # work desktop
 desktop_path="/home/yann.zerlaut"
@@ -12,8 +12,8 @@ local1_path="/home/yann.zerlaut"
 local1_address="yann.zerlaut@10.0.0.1"
 
 # local 2
-local2_path="/home/yann.zerlaut"
-local2_address="yann.zerlaut@10.0.0.2"
+local2_path="/home/yann"
+local2_address="yann@10.0.0.2"
 
 # ICM desktop 2
 desktop2_path="/home/yann.zerlaut"
