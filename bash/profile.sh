@@ -57,5 +57,5 @@ VIMRCFILE='$HOME/work/setup/init.vim'
 
 # some terminal aliases:
 alias reload=load_config
-alias physion='cd work/physion'
+alias physion='cd ~/work/physion/src; conda activate physion'
 alias suite2p='conda activate suite2p; python -m suite2p'
