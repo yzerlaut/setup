@@ -1,17 +1,28 @@
+"""
+
+```
+jmtpfs ~/phone
+```
+
+"""
 import os, pathlib, shutil
 
 ################
 ##   phone    ##
 ################
-Phone = '/run/user/28050/gvfs/mtp\:host\=Xiaomi_Redmi_Note_11_5c1e757/Internal\ shared\ storage'
-if not os.path.isdir(Phone):
-    Phone = os.path.join('/run', 'user')
-    Phone = os.path.join(Phone, os.listdir(Phone)[0], 'gvfs')
-    Phone = os.path.join(Phone, os.listdir(Phone)[0])
-    Phone = os.path.join(Phone, os.listdir(Phone)[0])
+# Phone = '/run/user/1000/gvfs/mtp\:host\=Xiaomi_Redmi_Note_11_5c1e757/Internal\ shared\ storage'
+# if not os.path.isdir(Phone):
+    # Phone = os.path.join('/run', 'user')
+    # Phone = os.path.join(Phone, os.listdir(Phone)[0], 'gvfs')
+    # Phone = os.path.join(Phone, os.listdir(Phone)[0])
+    # Phone = os.path.join(Phone, os.listdir(Phone)[0])
+Phone_root_path = os.path.join(os.path.expanduser('~'), 'phone')
+Phone = os.path.join(Phone_root_path, 
+                     os.listdir(Phone_root_path)[0])
 
 # look for the FLstudio folder on the phone
-FLM = os.path.join(Phone, 'Android', 'data', 'com.imageline.FLM', 'files')
+FLM = os.path.join(Phone, 
+                   'Android', 'data', 'com.imageline.FLM', 'files')
 
 ################
 ##   laptop   ##

@@ -115,4 +115,3 @@ taken from [https://jrs-s.net/2017/07/01/slow-ssh-logins/](jrs-s.net), see more 
 sudo systemctl mask NetworkManager-wait-online.service
 ```
 
-
