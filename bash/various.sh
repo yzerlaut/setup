@@ -34,3 +34,14 @@ format_drive() {
 	echo "-> done !"
     fi
 }
+########################################
+########### external drive tools #######
+########################################
+
+new_song() {
+    echo "---------------------------------------------"
+    echo "---> Type the Title of the Song:"
+    echo "       (should be something like: /dev/sdc) :\n"
+    read title 
+    echo $title
+}

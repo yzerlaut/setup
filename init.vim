@@ -17,10 +17,10 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
-Plug 'klen/python-mode'
+"Plug 'klen/python-mode'
 Plug 'preservim/vim-markdown'
 Plug 'jupyter-vim/jupyter-vim' 
-Plug 'nvie/vim-flake8'
+"Plug 'nvie/vim-flake8'
 Plug 'junegunn/goyo.vim'
 
 " Initialize plugin system
@@ -46,6 +46,12 @@ set autoindent          " copy indent from current line when starting a new line
 " make backspaces more powerfull
 set backspace=indent,eol,start
 
+" --------------------------------------------------------------------------------
+"       map leader setting
+" --------------------------------------------------------------------------------
+"
+let mapleader = "," 
+
 "
 " --------------------------------------------------------------------------------
 "       Ipython Qtconsole integration (JupyterVim)
@@ -68,13 +74,10 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <tab>b :bNext<CR>
 nnoremap <tab><tab>b :bNext<CR>
 
-
-"
 " --------------------------------------------------------------------------------
 "       some other settings: 
 " --------------------------------------------------------------------------------
 "
-let mapleader = "," 
 
 " window commands with just <tab> (e.g. <tab>l moves to window on the right)
 nnoremap <tab> <C-w>
