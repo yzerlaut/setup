@@ -17,7 +17,8 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
-"Plug 'preservim/vim-markdown'
+Plug 'klen/python-mode'
+Plug 'preservim/vim-markdown'
 Plug 'jupyter-vim/jupyter-vim' 
 Plug 'nvie/vim-flake8'
 Plug 'junegunn/goyo.vim'
@@ -44,9 +45,33 @@ set shiftwidth=4        " number of spaces to use for auto indent
 set autoindent          " copy indent from current line when starting a new line
 " make backspaces more powerfull
 set backspace=indent,eol,start
+
 "
 " --------------------------------------------------------------------------------
-"  some other settings: 
+"       Ipython Qtconsole integration (JupyterVim)
+" --------------------------------------------------------------------------------
+"
+let g:python3_host_prog = '$HOME/miniconda3/bin/python'
+
+nnoremap <buffer> <silent> <leader>x :JupyterSendCell<CR>
+nnoremap <buffer> <silent> <leader>r :JupyterRunFile<CR>
+
+
+"
+" --------------------------------------------------------------------------------
+"       Buffers
+" --------------------------------------------------------------------------------
+"
+nnoremap <tab><tab>b :bNext<CR>
+" Access and shift buffers  (list with F5, shift next with <tab>b
+nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <tab>b :bNext<CR>
+nnoremap <tab><tab>b :bNext<CR>
+
+
+"
+" --------------------------------------------------------------------------------
+"       some other settings: 
 " --------------------------------------------------------------------------------
 "
 let mapleader = "," 
@@ -64,17 +89,4 @@ function! StartUp()
     end
 endfunction
 
-let g:python3_host_prog = '$HOME/miniconda3/bin/python'
-
-nnoremap <buffer> <silent> <leader>x :JupyterSendCell<CR>
-nnoremap <buffer> <silent> <leader>r :JupyterRunFile<CR>
-
-
-nnoremap <tab><tab>b :bNext<CR>
-
 autocmd VimEnter * call StartUp()
-" Access and shift buffers  (list with F5, shift next with <tab>b
-nnoremap <F5> :buffers<CR>:buffer<Space>
-nnoremap <tab>b :bNext<CR>
-nnoremap <tab><tab>b :bNext<CR>
-

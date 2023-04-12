@@ -1,0 +1,2 @@
+umount ~/phone
+jmtpfs ~/phone/

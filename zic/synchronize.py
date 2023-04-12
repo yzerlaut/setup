@@ -30,12 +30,14 @@ FLM = os.path.join(Phone,
 
 Laptop = os.path.join(os.path.expanduser('~'), 'Music')
 audacity_folder = os.path.join(Laptop, 'Audacity')
-flstudio_folder = os.path.join(Laptop, 'FLM-files')
+flstudio_folder = os.path.join(Laptop, 'FLstudio')
 
 # let's look at the content of the Audacity folder and create the song folders in all Samples and Tracks 
 for song in os.listdir(audacity_folder):
-    for root in [os.path.join(Laptop, 'Tracks'), os.path.join(FLM, 'My Tracks'),
-                 os.path.join(Laptop, 'Samples'), os.path.join(FLM, 'My Samples')]:
+    for root in [os.path.join(Laptop, 'Tracks'),
+                 os.path.join(FLM, 'My Tracks'),
+                 os.path.join(Laptop, 'Samples'),
+                 os.path.join(FLM, 'My Samples')]:
         pathlib.Path(os.path.join(root, song)).mkdir(parents=True, exist_ok=True)
 
 # backup FLM files from Phone to Laptop
@@ -44,7 +46,7 @@ for song in os.listdir(os.path.join(FLM, 'My Songs')):
     if os.path.isfile(song):
         print(' saving "%s" [...] ' % os.path.join(FLM, 'My Songs', song))
         shutil.copyfile(os.path.join(FLM, 'My Songs', song),
-                        os.path.join(flstudio_folder, song))
+                        os.path.join(flstudio_folder, 'FLM-files', song))
 
 
 #######################################
@@ -53,8 +55,8 @@ for song in os.listdir(os.path.join(FLM, 'My Songs')):
 
 for song in os.listdir(audacity_folder):
     # tracks from Laptop to Phone
-    for track in os.listdir(os.path.join(Laptop, 'Samples', song)):
-        shutil.copyfile(os.path.join(Laptop, 'Samples', song, track),
+    for track in os.listdir(os.path.join(Laptop, 'FLM', 'Samples', song)):
+        shutil.copyfile(os.path.join(Laptop, 'FLM', 'Samples', song, track),
                         os.path.join(FLM, 'My Samples', song, track))
 
 #######################################
