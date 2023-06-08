@@ -35,6 +35,11 @@ Some of the things done, this sets up:
 - ...
 - 
 
+### 3. Some settings
+
+- use `gnome-disks` to automount partitions
+- ...
+
 ## Windows 
 
 ### Install `git`
