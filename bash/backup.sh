@@ -19,11 +19,11 @@ backup() {
     echo ""
 }
 
-backup_documents_desktop_to_drive() {
+backup_documents_to_drive() {
     echo ""
     echo "running the following command:"
     echo rsync -avhP --stats --dry-run /home/$USER/Documents/* /media/$USER/DATADRIVE1/Yann_Backup/Documents
-    rsync -avhP --stats /home/yann.zerlaut/Documents/* /media/yann.zerlaut/DATADRIVE1/Yann_Backup/Documents/
+    rsync -avhP --stats /home/$USER/Documents/* /media/$USER/DATADRIVE1/Yann_Backup/Documents/
 }
     
 backup_to_nas() {
