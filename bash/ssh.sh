@@ -98,6 +98,13 @@ go_to() {
     fi
 }
 
+work_on() {
+    pick_location $1
+    if [[ ! -z "$target_address" ]]; then
+	sshpass -p $SSHPASS ssh -X $target_address 
+    fi
+}
+
 rsync_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
