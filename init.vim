@@ -2,7 +2,6 @@ set nocompatible              " be iMproved, required
 set autoread
 filetype off                  " required
 
-
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
