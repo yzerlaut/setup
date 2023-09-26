@@ -1,3 +1,7 @@
+"""
+USING THE `multiprocessing` MODULE TO PARALLELIZE FUNCTION EXECUTION
+"""
+
 import multiprocessing as mp
 import numpy as np
 from itertools import product
@@ -9,8 +13,8 @@ class Parallel:
     a class to run parallel simulations of
     an arbitrary function:
 
-        `running_sim_func(a=0, b='long', c=False, ...
-                          filename='test.npy')`
+        `single_run_func(a=0, b='long', c=False, ...
+                         filename='test.npy')`
 
     over a multi-dimentsional grid of parameters
 
@@ -65,7 +69,8 @@ class Parallel:
             self.PARAMS_SCAN['filenames'].append(\
                     self.build_filename_single_sim(self.KEYS, VAL))
 
-    def run(self, running_sim_func,
+    def run(self, single_run_func,
+            single_run_args={},
             parallelize=True,
             fix_missing_only=False,
             Nmax_simultaneous_processes=None):
@@ -87,7 +92,7 @@ class Parallel:
                 for key in self.KEYS:
                     params[key] = self.PARAMS_SCAN[key][i]
                 params['filename'] = self.PARAMS_SCAN['filenames'][i]
-                running_sim_func(**params)
+                single_run_func(**params, **single_run_args)
             
             for i, FN in enumerate(self.PARAMS_SCAN['filenames']):
                 if parallelize:
@@ -168,12 +173,12 @@ if __name__=='__main__':
     ##################################################
     # the "running_sim_func" should look like that  ##
     ##################################################
-    def running_sim_func(SEED=0, 
-                         a=0,
-                         b=1,
-                         c=3,
-                         filename='test.npy',
-                         delay=0.1):
+    def single_run_func(SEED=0, 
+                        a=0,
+                        b=1,
+                        c=3,
+                        filename='test.npy',
+                        delay=0.1):
         """
         it should have the "filename" argument at least
         """
@@ -201,7 +206,7 @@ if __name__=='__main__':
         start_time = time.time()
         print('-----------------------------------')
         print(' Without parallelization')
-        sim.run(running_sim_func,
+        sim.run(single_run_func,
                 parallelize=False)
         print("--- %s seconds ---" % (time.time() - start_time))        
         print('-----------------------------------')
@@ -209,7 +214,7 @@ if __name__=='__main__':
 
         start_time = time.time()
         print(' With parallelization')
-        sim.run(running_sim_func,
+        sim.run(single_run_func,
                 parallelize=True)
         print("--- %s seconds ---" % (time.time() - start_time))        
 
