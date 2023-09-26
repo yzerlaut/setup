@@ -169,7 +169,8 @@ if __name__=='__main__':
         it should have the "filename" argument at least
         """
         time.sleep(delay)
-        np.save(filename, {'x':np.arange(10)})
+        np.save(filename, {'x':np.arange(10),
+                           'scalar_output':np.random.randn()})
 
     sim = Parallel(filename=\
             os.path.join(tempfile.gettempdir(), 'data.zip'))
