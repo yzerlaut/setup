@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.14.0
+#       jupytext_version: 1.14.5
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -14,7 +14,9 @@
 # ---
 
 # %%
+import os
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pylab as plt
 mpl_style_sheet = os.path.join(os.path.expanduser('~'), 'work', 'setup', 'python', 'matplotlib_style.py')
 if os.path.isfile(mpl_style_sheet):
@@ -34,5 +36,13 @@ for ax in AX:
     ax.set_title('title')
 fig.savefig(os.path.join(os.path.expanduser('~'), 'Desktop', 'fig.png'))
 fig.show()
+
+# %%
+from numpy import *
+def f(x,b=-3):
+    return (3 * 0.5*(1-sign(x-b)) + 5 * 0.5*(1+sign(x-b)))
+
+x = np.linspace(-8,8)
+plt.plot(x, f(x))
 
 # %%
