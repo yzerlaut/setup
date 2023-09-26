@@ -37,7 +37,7 @@ class Parallel:
 
     def build_filename_single_sim(self, KEYS, VAL):
 
-        FN = self.temp_folder+os.path.sep+self.basename
+        FN = self.basename
 
         for key, val in zip(KEYS, VAL):
             if type(val) in [float, np.float32, np.float64]:
@@ -91,7 +91,8 @@ class Parallel:
                 params = {}
                 for key in self.KEYS:
                     params[key] = self.PARAMS_SCAN[key][i]
-                params['filename'] = self.PARAMS_SCAN['filenames'][i]
+                params['filename'] = os.path.join(self.temp_folder,
+                                                  self.PARAMS_SCAN['filenames'][i])
                 single_run_func(**params, **single_run_args)
             
             for i, FN in enumerate(self.PARAMS_SCAN['filenames']):
@@ -125,7 +126,7 @@ class Parallel:
                     
             # write all single sim files in the zip file
             for FN in self.PARAMS_SCAN['filenames']:
-                zf.write(FN, arcname=os.path.basename(FN))
+                zf.write(os.path.join(self.temp_folder, FN), arcname=FN)
 
             # add the scan metadata to the zip
             np.save(self.scan_file, self.PARAMS_SCAN)
@@ -136,6 +137,18 @@ class Parallel:
 
         else:
             print(' need to build the simulation with the varied parameters ! ')
+
+    def unzip(self):
+
+        zf = zipfile.ZipFile(self.filename, mode='r')
+
+        for fn in self.PARAMS_SCAN['filenames']:
+            data = zf.read(fn)
+            FN = os.path.join(self.temp_folder, os.path.basename(fn)) 
+            with open(FN, 'wb') as f:
+                f.write(data)
+
+        zf.close()
 
 
     def load(self,
@@ -148,16 +161,14 @@ class Parallel:
         with open(self.scan_file, 'wb') as f:
             f.write(data)
 
-        self.PARAMS_SCAN =  np.load(self.scan_file,
+        zf.close()
+
+        self.PARAMS_SCAN = np.load(self.scan_file,
                                allow_pickle=True).item()
-        
+        self.keys = self.PARAMS_SCAN['keys'] 
 
         if unzip:
-            for fn in self.PARAMS_SCAN['filenames']:
-                data = zf.read(os.path.basename(fn))
-                FN = os.path.join(self.temp_folder, os.path.basename(fn)) 
-                with open(FN, 'wb') as f:
-                    f.write(data)
+            self.unzip()
 
         if with_data:
             self.DATA = []
@@ -167,6 +178,43 @@ class Parallel:
                 self.DATA.append(data)
 
         zf.close()
+
+        self.build_grid()
+
+    def build_grid(self):
+
+        self.VALUES = [np.sort(np.unique(self.PARAMS_SCAN[k])) for k in self.keys]
+       
+        for key, array in zip(self.keys,
+                              np.meshgrid(*[self.VALUES[iK] for iK in range(len(self.keys))],
+                                          indexing='ij')):
+            setattr(self, key, array)
+
+        # now filenames array from list of simulations
+        self.filenames = np.empty(getattr(self, self.keys[0]).shape, dtype=object)
+        for i, fn in enumerate(self.PARAMS_SCAN['filenames']):
+            cond = np.ones(self.filenames.shape, dtype=bool)
+            for key in self.keys:
+                cond = cond & (getattr(self, key)==self.PARAMS_SCAN[key][i])
+            self.filenames[cond] = fn
+
+    def fetch_quantity_on_grid(self, key,
+                               dtype=float):
+
+        setattr(self, key, np.empty(self.filenames.shape,
+                                    dtype=dtype))
+
+        for iKs in product(*[range(len(X)) for X in self.VALUES]):
+
+            print(self.filenames[iKs])
+
+            getattr(self, key)[iKs] = np.load(\
+                                os.path.join(self.temp_folder, self.filenames[iKs]),
+                                allow_pickle=True).item()[key]
+            
+
+
+        
     
 if __name__=='__main__':
 
@@ -183,6 +231,7 @@ if __name__=='__main__':
         it should have the "filename" argument at least
         """
         time.sleep(delay)
+        np.random.seed(a)
         np.save(filename, {'x':np.arange(10),
                            'scalar_output':np.random.randn()})
 
@@ -192,7 +241,8 @@ if __name__=='__main__':
     if sys.argv[-1]=='load':
 
         sim.load(unzip=True, with_data=True)
-        print(sim.DATA)
+        sim.fetch_quantity_on_grid('scalar_output')
+        print(sim.scalar_output[0,:,0])
 
     else:
         # means run !
