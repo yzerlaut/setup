@@ -32,29 +32,38 @@ class Parallel:
                                         self.basename+'_scan.npy')
 
     def build_filename_single_sim(self, KEYS, VAL):
+
         FN = self.temp_folder+os.path.sep+self.basename
+
         for key, val in zip(KEYS, VAL):
-            FN += '_'+key+'_'+str(val)
-        FN += '_'+str(np.random.randint(100000))+'.npy'
+            if type(val) in [float, np.float32, np.float64]:
+                FN += '_'+key+'_%.3e'%val
+            else:
+                FN += '_'+key+'_'+str(val)
+
+        # not too mix up results of repeated/successive sims:
+        FN += '_'+str(np.random.randint(100000))+'.npy' 
         return FN
 
 
-    def build(self, KEYS, VALUES):
+    def build(self, DICT):
         """ 
         build the set of simulations with their filenames !
         """
-        self.PARAMS_SCAN = {'filenames':[], 'keys':KEYS}
-        self.KEYS = KEYS
+        self.KEYS = [str(k) for k in DICT.keys()]
+        self.PARAMS_SCAN = {'filenames':[], 'keys':self.KEYS}
+        VALUES = []
         for key in self.KEYS:
             self.PARAMS_SCAN[key] = []
+            VALUES.append(DICT[key])
 
         for VAL in product(*VALUES):
             # params for each sim
-            for key, val in zip(KEYS, VAL):
+            for key, val in zip(self.KEYS, VAL):
                 self.PARAMS_SCAN[key].append(val)
             # with a given filename
             self.PARAMS_SCAN['filenames'].append(\
-                    self.build_filename_single_sim(KEYS, VAL))
+                    self.build_filename_single_sim(self.KEYS, VAL))
 
     def run(self, running_sim_func,
             parallelize=True,
@@ -184,9 +193,9 @@ if __name__=='__main__':
         # means run !
      
         # build the scan over parameters
-        sim.build(['SEED', 'a', 'b'],
-                  [np.arange(3), np.arange(5, 8), [True, False]])
-        
+        sim.build({'SEED': np.arange(3), 
+                   'a':np.arange(5, 8),
+                   'b':[True, False]})
 
         import time
         start_time = time.time()

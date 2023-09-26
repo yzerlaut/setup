@@ -1,5 +1,7 @@
-""" documentation for this file is written at the end
- (use of argparse) """
+"""
+documentation for this file is written at the end
+ (use of argparse)
+"""
 import numpy as np
 import matplotlib.pylab as plt
 import os, sys, time
