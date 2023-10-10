@@ -2,7 +2,7 @@
 
 > Instructions for a quick setup of new systems under different platforms
 
-## Get python
+## Python
 
 Install a miniconda distribution:
 
@@ -95,7 +95,6 @@ Then add the [./dot_vimrc](./dot_vimrc) file in your home directory and run vim.
 # Miscellaneous
 
 ## slow ssh connection
-
 
 - edit `/etc/ssh/sshd_config`, and set `UseDNS no` ().
     also potentially:
