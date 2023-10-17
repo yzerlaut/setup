@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 qvim() {
-    jupyter qtconsole --style=zenburn & 
+    jupyter qtconsole --ip='*' --style=zenburn & 
     nvim $1
 }
 
@@ -43,13 +43,14 @@ load_config() {
 	    source $HOME/work/setup/bash/git.sh
 	    source $HOME/work/setup/bash/ssh.sh
 	    source $HOME/work/setup/bash/various.sh
+        set -o vi # Set vi for bash editing mode
 	    ;;
     esac
 
 }
 load_config
 
-# to load the 
+# to load the vim settigs
 VIMRCFILE='$HOME/work/setup/init.vim'
 
 # caps-lock for "Compose Key"
