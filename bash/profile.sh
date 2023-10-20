@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 qvim() {
-    jupyter qtconsole --ip='*' --style=zenburn & 
+    jupyter qtconsole --style=zenburn --JupyterWidget.include_other_output=True & 
     nvim $1
 }
 
@@ -13,6 +13,7 @@ load_config() {
 	linux*)
 	    alias open="xdg-open"
 	    alias em='emacs -nw -q'
+        alias vim='nvim'
         set -o vi # Set vi for bash editing mode
         EDITOR=vi # Set vi as the default editor for all apps that check this
         source $HOME/work/setup/bash/backup.sh
@@ -60,4 +61,3 @@ VIMRCFILE='$HOME/work/setup/init.vim'
 alias reload=load_config
 alias physion='cd ~/work/physion/src; conda activate physion'
 alias suite2p='conda activate suite2p; python -m suite2p'
-alias vim='nvim'

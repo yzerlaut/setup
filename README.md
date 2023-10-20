@@ -54,6 +54,11 @@ conda install -c anaconda git
 
 ## OSX
 
+### Install `sshpass`
+
+```
+brew install hudochenkov/sshpass/sshpass
+```
 ...
 
 ## GIT setup
