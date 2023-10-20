@@ -109,14 +109,27 @@ rsync_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
 	#sshpass -p $SSHPASS rsync -avhP "$2"/* $target_address:$target_dir/"$2"
-    sshpass -p $SSHPASS rsync -avhP ./* $target_address:$target_dir/
+    case "$OSTYPE" in
+        darwin*)
+            sshpass -p $SSHPASS rsync -avhP ./ $target_address:$target_dir/
+        *)
+            sshpass -p $SSHPASS rsync -avhP ./* $target_address:$target_dir/
+        ;;
+    esac
     fi
 }
 
 rsync_from() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/* .
+    case "$OSTYPE" in
+        darwin*)
+	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/ .
+        *)
+	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/* .
+        ;;
+    esac
+
     fi
 }
 
