@@ -3,8 +3,10 @@ starting_path=$HOME
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+alias vim='nvim -u $HOME/work/setup/init.vim'
+
 qvim() {
-    jupyter qtconsole --style=zenburn --JupyterWidget.include_other_output=True & 
+    jupyter qtconsole --style=zenburn &
     nvim $1
 }
 
@@ -51,8 +53,6 @@ load_config() {
 }
 load_config
 
-# to load the vim settigs
-VIMRCFILE='$HOME/work/setup/init.vim'
 
 # caps-lock for "Compose Key"
 #xmodmap -e "keysym Caps_Lock = Multi_key"

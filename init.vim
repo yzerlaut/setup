@@ -2,17 +2,17 @@ set nocompatible              " be iMproved, required
 set autoread
 filetype off                  " required
 
+" --------------------------------------------------------------------------------
+"               NeoVim Plugin Manager
+" --------------------------------------------------------------------------------
+"### install the plugin manager with:
+"``
+"sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"```
+" then install the plugins in neovim with: 
+"                                           :PluginInstall
 call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
-
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
@@ -21,7 +21,6 @@ Plug 'preservim/vim-markdown'
 Plug 'jupyter-vim/jupyter-vim' 
 "Plug 'nvie/vim-flake8'
 Plug 'junegunn/goyo.vim'
-
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -29,6 +28,26 @@ call plug#end()
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
 
+" --------------------------------------------------------------------------------
+"   editor settings
+" --------------------------------------------------------------------------------
+"
+set clipboard=unnamedplus " Enables the clipboard between Vim/Neovim and other applications.
+set completeopt=noinsert,menuone,noselect " Modifies the auto-complete menu to behave more like an IDE.
+set cursorline " Highlights the current line in the editor
+set hidden " Hide unused buffers
+set autoindent " Indent a new line
+set inccommand=split " Show replacements in a split screen
+set mouse=a " Allow to use the mouse in the editor
+"set number " Shows the line numbers
+set splitbelow splitright " Change the split screen behavior
+set title " Show file title
+set wildmenu " Show a more advance menu
+set cc=80 " Show at 80 column a border for good code style
+filetype plugin indent on   " Allow auto-indenting depending on file type
+syntax on
+"set spell " enable spell check (may need to download language package)
+set ttyfast " Speed up scrolling in Vim
 
 " --------------------------------------------------------------------------------
 "   configure editor for tabs
@@ -89,8 +108,6 @@ nnoremap <tab><tab>b :bNext<CR>
 " window commands with just <tab> (e.g. <tab>l moves to window on the right)
 nnoremap <tab> <C-w>
 
-" having a nice clipboard - yank link
-set clipboard=unnamedplus
 
 " open Nerd Tree when there was no file on the command line:
 function! StartUp()
