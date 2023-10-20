@@ -3,11 +3,12 @@ starting_path=$HOME
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# replace vim by neovim
 alias vim='nvim -u $HOME/work/setup/init.vim'
 
 qvim() {
     jupyter qtconsole --style=zenburn &
-    nvim $1
+    nvim $1 -u $HOME/work/setup/init.vim
 }
 
 load_config() {

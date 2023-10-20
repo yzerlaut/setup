@@ -26,7 +26,7 @@ mpl.rcParams["figure.facecolor"]='grey'
 
 # %%
 fig, AX = plt.subplots(1, 4, figsize=(7,1.5))
-# plt.subplots_adjust(wspace=0.5, top=.7, left=.35)
+plt.subplots_adjust(wspace=0.5, top=.7, left=.35)
 # fig.patch.set_facecolor('tab:grey')
 AX[0].imshow(np.random.randn(10,10))
 AX[0].set_ylabel('y-label')
