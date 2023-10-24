@@ -125,7 +125,7 @@ rsync_from() {
     if [[ ! -z "$target_address" ]]; then
     case "$OSTYPE" in
         darwin*)
-	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/
+	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/ ./
             ;;
         *)
 	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/* .
