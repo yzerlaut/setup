@@ -44,6 +44,7 @@ set splitbelow splitright " Change the split screen behavior
 set title " Show file title
 set wildmenu " Show a more advance menu
 set cc=80 " Show at 80 column a border for good code style
+highlight ColorColumn ctermbg=7
 filetype plugin indent on   " Allow auto-indenting depending on file type
 syntax on
 "set spell " enable spell check (may need to download language package)
