@@ -23,6 +23,10 @@ desktop2_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
 server_address="yann.zerlaut@login02.icm-institute.org"
 server_path="/network/lustre/iss02/home/yann.zerlaut"
 
+# server adresses
+server_address="yann.zerlaut@login02.icm-institute.org"
+server_path="/network/lustre/iss02/home/yann.zerlaut"
+
 # other adresses
 CaSetup_address="yann@192.168.24.166" # TO BE CHANGED
 VisualSetup_address="yann@192.168.17.11" # TO BE CHANGED
