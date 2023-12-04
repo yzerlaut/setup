@@ -222,6 +222,16 @@ connect_screen_on() {
 }
 
 
+print_on() {
+    # ------------------------------------ #
+    # Need to have a printer configured !!
+    # ------------------------------------ #
+    pick_location $1
+    if [[ ! -z "$target_address" ]]; then
+        sshpass -p $SSHPASS scp $2 ${target_address}:temp
+        sshpass -p $SSHPASS ssh -t $target_address "lp -d Copieurs_Sharp ~/temp; sleep 3s; rm ~/temp; echo done !"
+    fi
+}
 
 
 ##################################################################################
