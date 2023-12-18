@@ -23,9 +23,9 @@ desktop2_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
 server_address="yann.zerlaut@login02.icm-institute.org"
 server_path="/network/lustre/iss02/home/yann.zerlaut"
 
-# server adresses
-server_address="yann.zerlaut@login02.icm-institute.org"
-server_path="/network/lustre/iss02/home/yann.zerlaut"
+# NAS adresses
+NAS_address="admin@10.100.233.33"
+NAS_path="/volume1/"
 
 # other adresses
 CaSetup_address="yann@192.168.24.166" # TO BE CHANGED
@@ -72,6 +72,13 @@ pick_location() {
 	    server)
 		target_address="${server_address}"
 		target_dir="${current_dir/$starting_path/$server_path}"
+		;;
+	    NAS)
+		target_address="${NAS_address}"
+		target_dir="${current_dir/$starting_path/$NAS_path}"
+        if [[ ! -z "$NASPASS" ]]; then
+            SSHPASS=$NASPASS
+        fi
 		;;
 	    CaSetup)
 		target_address="${CaSetup_address}"
