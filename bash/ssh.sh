@@ -16,8 +16,8 @@ local2_path="/home/yann"
 local2_address="yann@10.0.0.2"
 
 # ICM desktop 2
-desktop2_path="/home/yann.zerlaut"
-desktop2_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
+analysis_path="/home/yann.zerlaut"
+analysis_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
 
 # server adresses
 server_address="yann.zerlaut@login02.icm-institute.org"
@@ -61,9 +61,9 @@ pick_location() {
 		target_address="${local2_address}"
 		target_dir="${current_dir/$starting_path/$local2_path}"
 		;;
-	    desktop2)
-		target_address="${desktop2_address}"
-		target_dir="${current_dir/$starting_path/$desktop2_path}"
+	    analysis)
+		target_address="${analysis_address}"
+		target_dir="${current_dir/$starting_path/$analysis_path}"
 		;;
 	    desktop_drive)
 		target_address="${desktop_address}"
