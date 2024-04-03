@@ -61,6 +61,10 @@ brew install hudochenkov/sshpass/sshpass
 ```
 ...
 
+### Install XQuartz for X11 forwarding
+
+From: https://www.xquartz.org/
+
 ## GIT setup
 
 - Create Token for this new system from the web interface: https://github.com/settings/tokens
