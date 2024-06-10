@@ -24,8 +24,10 @@ server_address="yann.zerlaut@login02.icm-institute.org"
 server_path="/network/lustre/iss02/home/yann.zerlaut"
 
 # NAS adresses
-NAS_address="admin@10.100.233.33"
+NAS_address="yann@10.100.233.33"
 NAS_path="/volume1/"
+localNAS_address="yann@10.0.0.3"
+localNAS_path="/volume1/"
 
 # other adresses
 CaSetup_address="yann@192.168.24.166" # TO BE CHANGED
@@ -76,6 +78,13 @@ pick_location() {
 	    NAS)
 		target_address="${NAS_address}"
 		target_dir="${current_dir/$starting_path/$NAS_path}"
+        if [[ ! -z "$NASPASS" ]]; then
+            SSHPASS=$NASPASS
+        fi
+		;;
+	    localNAS)
+		target_address="${localNAS_address}"
+		target_dir="${current_dir/$starting_path/$localNAS_path}"
         if [[ ! -z "$NASPASS" ]]; then
             SSHPASS=$NASPASS
         fi
@@ -241,6 +250,10 @@ print_on() {
     fi
 }
 
+mount_from() {
+    echo sshfs -o allow_other,default_permissions yann@10.0.0.3:/ ~/NAS
+    #echo sshfs -o allow_other,default_permissions ${target_address}:/ ~/NAS
+}
 
 ##################################################################################
 ######## deprecated methods ######################################################
