@@ -37,7 +37,6 @@ VisualSetup_address="yann@192.168.17.11" # TO BE CHANGED
 pick_location() {
     current_dir=$(pwd)
     
-    if [[ ! -z "$SSHPASS" ]]; then
 	case $1 in
 	    laptop)
 		target_address="${laptop_address}"
@@ -101,40 +100,32 @@ pick_location() {
 		echo $1 'not found'
 		;;
 	esac
-    else
-	echo " -----------------------------------------"
-	echo " SSHPASS environment variable is not set !"
-	echo " set it with: SSHPASS='your_ssh_password' "
-	echo " -----------------------------------------"
-	target_address=""
-	target_dir=""
-    fi
 }
 
 go_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS ssh -t $target_address "source ~/.bashrc; cd $target_dir ; bash"
+	ssh -t $target_address "source ~/.bashrc; cd $target_dir ; bash"
     fi
 }
 
 work_on() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS ssh -X $target_address 
+	ssh -X $target_address 
     fi
 }
 
 rsync_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	#sshpass -p $SSHPASS rsync -avhP "$2"/* $target_address:$target_dir/"$2"
+	#rsync -avhP "$2"/* $target_address:$target_dir/"$2"
     case "$OSTYPE" in
         darwin*)
-            sshpass -p $SSHPASS rsync -avhP ./ $target_address:$target_dir/
+            rsync -avhP ./ $target_address:$target_dir/
             ;;
         *)
-            sshpass -p $SSHPASS rsync -avhP ./* $target_address:$target_dir/
+            rsync -avhP ./* $target_address:$target_dir/
             ;;
     esac
     fi
@@ -145,10 +136,10 @@ rsync_from() {
     if [[ ! -z "$target_address" ]]; then
     case "$OSTYPE" in
         darwin*)
-	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/ ./
+	        rsync -avhP $target_address:$target_dir/ ./
             ;;
         *)
-	        sshpass -p $SSHPASS rsync -avhP $target_address:$target_dir/* .
+	        rsync -avhP $target_address:$target_dir/* .
             ;;
     esac
 
@@ -158,23 +149,23 @@ rsync_from() {
 copydir_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
- 	echo sshpass -p $SSHPASS scp -r "$2" $target_address:$target_dir/"$2"
- 	sshpass -p $SSHPASS scp -r "$2" $target_address:$target_dir/"$2"
+ 	echo scp -r "$2" $target_address:$target_dir/"$2"
+ 	scp -r "$2" $target_address:$target_dir/"$2"
     fi
 }
 
 copy_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
- 	sshpass -p $SSHPASS scp "$2" $target_address:$target_dir/"$2"
+ 	scp "$2" $target_address:$target_dir/"$2"
     fi
 }
 
 copydir_from() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
- 	echo sshpass -p $SSHPASS scp -r $target_address:$target_dir/"$2" "$2"
- 	sshpass -p $SSHPASS scp -r $target_address:$target_dir/"$2" "$2"
+ 	echo scp -r $target_address:$target_dir/"$2" "$2"
+ 	scp -r $target_address:$target_dir/"$2" "$2"
     fi
 }
 
@@ -182,14 +173,14 @@ copydir_from() {
 copy_from() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
- 	sshpass -p $SSHPASS scp $target_address:$target_dir/"$2" "$2"
+ 	scp $target_address:$target_dir/"$2" "$2"
     fi
 }
 
 pull_on() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS ssh $target_address -t "source ~/.bashrc ; cd $target_dir ; git pull"
+	ssh $target_address -t "source ~/.bashrc ; cd $target_dir ; git pull"
     fi
 }
 	
@@ -212,31 +203,30 @@ run_on() {
 	# done
 	
 	echo ssh $target_address -t "source ~/.bashrc ; cd $target_dir ; "$COMMAND
-	sshpass -p $SSHPASS ssh $target_address -t "source ~/.bashrc ; cd $target_dir ; "$COMMAND
+	ssh $target_address -t "source ~/.bashrc ; cd $target_dir ; "$COMMAND
     fi
 }
 
 create_screen_on() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS ssh -t $target_address "source ~/.bashrc ; cd $target_dir ; screen -S "$2
+	ssh -t $target_address "source ~/.bashrc ; cd $target_dir ; screen -S "$2
     fi
 }
 
 list_screen_on() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS ssh -t $target_address "source ~/.bashrc ;screen -ls;exit"
+	ssh -t $target_address "source ~/.bashrc ;screen -ls;exit"
     fi
 }
 
 connect_screen_on() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	sshpass -p $SSHPASS ssh -t $target_address "screen -r "$2
+	ssh -t $target_address "screen -r "$2
     fi
 }
-
 
 print_on() {
     # ----------------------------------------------- #
@@ -245,8 +235,8 @@ print_on() {
     # ----------------------------------------------- #
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-        sshpass -p $SSHPASS scp $2 ${target_address}:temp
-        sshpass -p $SSHPASS ssh -t $target_address "lp -d Copieurs_Sharp ~/temp; sleep 3s; rm ~/temp; echo done !"
+        scp $2 ${target_address}:temp
+        ssh -t $target_address "lp -d Copieurs_Sharp ~/temp; sleep 3s; rm ~/temp; echo done !"
     fi
 }
 
