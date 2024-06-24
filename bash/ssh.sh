@@ -240,9 +240,21 @@ print_on() {
     fi
 }
 
-mount_from() {
-    echo sshfs -o allow_other,default_permissions yann@10.0.0.3:/ ~/NAS
-    #echo sshfs -o allow_other,default_permissions ${target_address}:/ ~/NAS
+mount_NAS() {
+    echo ""
+    echo "create a NAS folder in your home directory:"
+    echo "          mkdir ~/NAS .  "
+    echo ""
+    echo " - from a local connection:"
+    echo "     to NAS1 (LAN2)"
+    echo "          sshfs -o allow_other,default_permissions admin@10.0.0.3:/ ~/NAS"
+    echo "     to NAS2 (LAN1)"
+    echo "          sshfs -o allow_other,default_permissions admin@10.0.0.4:/ ~/NAS"
+    echo "     to NAS2 (LAN2)"
+    echo "          sshfs -o allow_other,default_permissions admin@10.0.0.4:/ ~/NAS"
+    echo " - from an ICM network connection:"
+    echo "     to NAS1 (LAN1)"
+    echo "          sshfs -o allow_other,default_permissions admin@10.100.233.33:/ ~/NAS"
 }
 
 ##################################################################################
