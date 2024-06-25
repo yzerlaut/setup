@@ -24,10 +24,12 @@ server_address="yann.zerlaut@login02.icm-institute.org"
 server_path="/network/lustre/iss02/home/yann.zerlaut"
 
 # NAS adresses
-NAS_address="yann@10.100.233.33"
-NAS_path="/volume1/"
+NAS_address="admin@10.100.233.33"
+NAS_path="/volume1/Yann"
+
+# local NAS adresses
 localNAS_address="yann@10.0.0.3"
-localNAS_path="/volume1/"
+localNAS_path="/volume1/Yann"
 
 # other adresses
 CaSetup_address="yann@192.168.24.166" # TO BE CHANGED
