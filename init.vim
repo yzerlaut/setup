@@ -2,6 +2,9 @@ set nocompatible              " be iMproved, required
 set autoread
 filetype off                  " required
 
+set notgc                     " for bug on OS X
+colorscheme vim               " for bug on OS X
+
 " --------------------------------------------------------------------------------
 "               NeoVim Plugin Manager
 " --------------------------------------------------------------------------------
