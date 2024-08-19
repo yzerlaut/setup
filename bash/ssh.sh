@@ -114,7 +114,7 @@ go_to() {
 work_on() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	ssh -X $target_address 
+	ssh -fnXY $target_address 'xterm & xterm & wait'
     fi
 }
 
