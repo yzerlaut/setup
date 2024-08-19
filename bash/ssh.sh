@@ -27,6 +27,14 @@ server_path="/network/lustre/iss02/home/yann.zerlaut"
 NAS_address="admin@10.100.233.33"
 NAS_path="/volume1/Yann"
 
+# NAS1 adresses
+NAS1_address="admin@10.0.0.3"
+NAS1_path="/volume1/homes/admin"
+
+# NAS2 adresses
+NAS2_address="admin@10.0.0.4"
+NAS2_path="/volume1/homes/admin"
+
 # local NAS adresses
 localNAS_address="yann@10.0.0.3"
 localNAS_path="/volume1/Yann"
