@@ -1,30 +1,21 @@
 # ---
-# jupyter:
-#   jupytext:
-#     formats: ipynb,py:percent
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#       format_version: '1.3'
-#       jupytext_version: 1.14.0
-#   kernelspec:
-#     display_name: Python 3 (ipykernel)
-#     language: python
-#     name: python3
+# notebook template
 # ---
 
-# %%
+# %% Load Modules
 import os
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pylab as plt
-mpl_style_sheet = os.path.join(os.path.expanduser('~'), 'work', 'setup', 'python', 'matplotlib_style.py')
+mpl_style_sheet = os.path.join(os.path.expanduser('~'), 
+                               'work', 'setup', 'python', 
+                               'matplotlib_style.py')
 if os.path.isfile(mpl_style_sheet):
     plt.style.use(mpl_style_sheet)
 mpl.rcParams["figure.facecolor"]='grey'
-# mpl.rcParams["figure.dpi"]=200
+# mpl.rcParams["figure.dpi"]=100
 
-# %%
+# %% Plot Some Data
 fig, AX = plt.subplots(1, 4, figsize=(7,1.5))
 plt.subplots_adjust(wspace=0.5, top=.7, left=.35)
 # fig.patch.set_facecolor('tab:grey')
@@ -36,7 +27,7 @@ for ax in AX:
     ax.set_title('title')
 fig.savefig(os.path.join(os.path.expanduser('~'), 'Desktop', 'fig.png'))
 
-# %%
+# %% Some Quick Calculations
 from numpy import *
 def f(x,b=-3):
     return (3 * 0.5*(1-sign(x-b)) + 5 * 0.5*(1+sign(x-b)))
