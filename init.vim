@@ -2,9 +2,9 @@ set nocompatible              " be iMproved, required
 set autoread
 filetype off                  " required
 
-set notgc                     " for bug on OS X
-colorscheme vim               " for bug on OS X
-
+"set notgc                     " for bug on OS X
+"colorscheme vim 
+"
 " --------------------------------------------------------------------------------
 "               NeoVim Plugin Manager
 " --------------------------------------------------------------------------------
@@ -27,6 +27,8 @@ Plug 'junegunn/goyo.vim'
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
+
+
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
