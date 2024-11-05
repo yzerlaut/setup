@@ -2,8 +2,8 @@ set nocompatible              " be iMproved, required
 set autoread
 filetype off                  " required
 
-"set notgc                     " for bug on OS X
-"colorscheme vim 
+set notgc                     " for bug on OS X
+colorscheme slate             " something compatible between osx and linux
 "
 " --------------------------------------------------------------------------------
 "               NeoVim Plugin Manager
@@ -20,7 +20,7 @@ Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
 "Plug 'klen/python-mode'
-"Plug 'preservim/vim-markdown'
+Plug 'preservim/vim-markdown'
 Plug 'jupyter-vim/jupyter-vim' 
 "Plug 'nvie/vim-flake8'
 Plug 'junegunn/goyo.vim'
