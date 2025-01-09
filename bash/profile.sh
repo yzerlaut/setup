@@ -6,6 +6,10 @@ export LANG=en_US.UTF-8
 # replace vim by neovim
 alias vim='nvim -u $HOME/work/setup/init.vim'
 
+up() {
+    ssh -YC yann.zerlaut@10.0.0.1 x2x -north -to :0.0
+}
+
 qvim() {
     jupyter qtconsole --style=zenburn &
     nvim $1 -u $HOME/work/setup/init.vim
