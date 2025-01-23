@@ -4,7 +4,18 @@
 #alias biblio='python -m biblio'
 
 
+get_my_ip() {
+    IP=$(echo $(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'))
+    echo $IP
+}
+
+send_my_ip() {
+    get_my_ip
+    echo "$IP" | mail -s "current IP" yann.zerlaut@proton.me
+}
+
 ########################################
+
 ########### external drive tools #######
 ########################################
 
