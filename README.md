@@ -1,28 +1,49 @@
-# quick setup
+# Quick initial setup
 
 > Instructions for a quick setup of new systems under different platforms
 
-## Python
 
-Install a miniconda distribution:
+## 1) Install a `python` distribution (through [Miniforge](https://github.com/conda-forge/miniforge))
 
-https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links
+- MsWin:
+    ```
+    curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe
+    start /wait "" Miniforge3-Windows-x86_64.exe /InstallationType=JustMe /RegisterPython=1 /S /D=%UserProfile%\Miniforge3 # use as default
+    ```
+
+- UNIX (Linux / OSX)
+    ```
+    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3-$(uname)-$(uname -m).sh
+    ```
+
+## 2) Install basic tools: vim, git, git-auth
+
+```
+conda install vim git gh
+```
+
+## 3) Clone this repository
+
+```
+git clone https://github.com/yzerlaut/setup
+```
+
+# Set up OpenSSH server
+
+#### Unix
+
+[...]
+
+#### MsWin
+
+[...]
+
+# OS-specific setup
 
 ## Linux (debian-based)
 
-### 1. Get and Install python
-
-Install a miniconda distribution:
-
-https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links
-
-```
-bash whatever-your-anaconda-installer-is.sh
-```
-accept all defaults (e.g. update .bashrc)
-
-
-### 2. Run the Setup script !
+### 1. Run the Setup script !
 
 ```
 bash ~/work/setup/tools/debian_setup.py
@@ -35,35 +56,19 @@ Some of the things done, this sets up:
 - ...
 - 
 
-### 3. Some settings
+### 2. Some settings
 
 - use `gnome-disks` to automount partitions
 - ...
 
-## Windows 
+## MsWin
 
-### Install `git`
-
-```
-conda install -c anaconda git
-```
-
-### Install `Vim`
-
-- https://www.vim.org/download.php#pc
+[...]
 
 ## OSX
 
-### Install `sshpass`
-
-```
-brew install hudochenkov/sshpass/sshpass
-```
-...
-
-### Install XQuartz for X11 forwarding
-
-From: https://www.xquartz.org/
+- Install XQuartz for X11 forwarding:
+    From: https://www.xquartz.org/
 
 ## GIT setup
 
