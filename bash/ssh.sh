@@ -1,11 +1,19 @@
+# macbook 
+macbook_path="/Users/yann" # OSX laptop
+macbook_address="yann@10.0.0.2"
+
 # laptop
-laptop_path="/Users/yann" # OSX laptop
+laptop_path="/home/yann"
 laptop_address="yann@10.0.0.2"
 
-# work desktop
+# desktop
 desktop_path="/home/yann.zerlaut"
 desktop_drive_path="/media/yann.zerlaut/DATADRIVE1/"
 desktop_address="yann.zerlaut@ICM-REBOL-LF001.icm-institute.org"
+
+# Sofia's desktop
+sofias_path="C:\\\\Users\\a.yann.zerlaut"
+sofias_address="a.yann.zerlaut@ICM-REBOL-WF009.icm-institute.org"
 
 # local 1
 local1_path="/home/yann.zerlaut"
@@ -48,6 +56,10 @@ pick_location() {
     current_dir=$(pwd)
     
 	case $1 in
+	    macbook)
+		target_address="${macbook_address}"
+		target_dir="${current_dir/$starting_path/$HOME}"
+		;;
 	    laptop)
 		target_address="${laptop_address}"
 		target_dir="${current_dir/$starting_path/$laptop_path}"
@@ -56,17 +68,13 @@ pick_location() {
 		target_address="${desktop_address}"
 		target_dir="${current_dir/$starting_path/$desktop_path}"
 		;;
-	    10.0.0.1)
-		target_address="${local1_address}"
-		target_dir="${current_dir/$starting_path/$local1_path}"
+	    sofias)
+		target_address="${sofias_address}"
+		target_dir="${current_dir/$starting_path/$sofias_path}"
 		;;
 	    1)
 		target_address="${local1_address}"
 		target_dir="${current_dir/$starting_path/$local1_path}"
-		;;
-	    10.0.0.2)
-		target_address="${local2_address}"
-		target_dir="${current_dir/$starting_path/$local2_path}"
 		;;
 	    2)
 		target_address="${local2_address}"
@@ -115,7 +123,13 @@ pick_location() {
 go_to() {
     pick_location $1
     if [[ ! -z "$target_address" ]]; then
-	ssh -t $target_address "source ~/.bashrc; cd $target_dir ; bash"
+        if [[ "$target_dir" == *"C:"* ]]; then
+            # simple ssh for windows:
+            ssh $target_address
+        else 
+            # otherwise we go to the matching directory
+            ssh -t $target_address "cd $target_dir"
+        fi
     fi
 }
 
