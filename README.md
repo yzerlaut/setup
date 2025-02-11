@@ -17,7 +17,7 @@
     bash Miniforge3-$(uname)-$(uname -m).sh
     ```
 
-## 2) Install basic tools: vim, git, git-auth
+## 2) Install basic tools: `vim`, `git`, `git-auth`
 
 ```
 conda install vim git gh
@@ -29,6 +29,15 @@ conda install vim git gh
 git clone https://github.com/yzerlaut/setup
 ```
 
+## 4) Additional softwares
+
+- [Inkscape](https://inkscape.org/): a vector graphics software
+
+- [Tabby](https://github.com/eugeny/tabby): a multi-platform terminal
+
+- ...
+
+
 # Set up OpenSSH server
 
 #### Unix
@@ -37,38 +46,77 @@ git clone https://github.com/yzerlaut/setup
 
 #### MsWin
 
+In the PowerShell (need admin rights):
+
+```
+Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server*' | Add-WindowsCapability -Online
+```
+
+```
+Get-WindowsCapability -Online | ? Name -like 'OpenSSH.Ser*'
+```
+
+```
+Set-Service -Name sshd -StartupType 'Automatic'
+```
+
+```
+netstat -na
+```
+
+```
+Get-NetFirewallRule -Name *OpenSSH-Server* |select Name, DisplayName, Description, Enabled
+```
+
+```
+New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+```
+
+```
+start-process notepad C:\Programdata\ssh\sshd_config
+```
+
+#### Configure `sshd_config`
+
 [...]
+
 
 # OS-specific setup
 
-## Linux (debian-based)
+## Linux (ubuntu/debian-based systems)
 
-### 1. Run the Setup script !
+#### - Add aliases and shortcuts to your `.profile`
 
-```
-bash ~/work/setup/tools/debian_setup.py
-```
+    ```
+    source ~/work/setup/bash/profile.sh
+    ```
+    this adds ssh shortcuts, environment variables, ...
 
-Some of the things done, this sets up:
-- some ssh shortcuts
-- set up the `vi` mode in the shell: `set -o vi`
-- set up `vim` as the default editor
-- ...
-- 
+#### - set up the `vi` mode in the shell 
+    ```
+    set -o vi
+    ```
+
+#### set up `vi` as the default editor (ubuntu/debian-based systems):
+    ```
+    sudo update-alternatives --set editor /usr/bin/vim.basic
+    sudo update-alternatives --set vi /usr/bin/vim.basic
+    ```
 
 ### 2. Some settings
 
 - use `gnome-disks` to automount partitions
 - ...
 
-## MsWin
-
-[...]
 
 ## OSX
 
 - Install XQuartz for X11 forwarding:
     From: https://www.xquartz.org/
+
+## MsWin
+
+[...]
 
 ## GIT setup
 
