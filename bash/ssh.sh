@@ -58,7 +58,7 @@ pick_location() {
 	case $1 in
 	    macbook)
 		target_address="${macbook_address}"
-		target_dir="${current_dir/$starting_path/$HOME}"
+		target_dir="${current_dir/$starting_path/$macbook_path}"
 		;;
 	    laptop)
 		target_address="${laptop_address}"
