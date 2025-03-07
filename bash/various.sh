@@ -21,9 +21,8 @@ print_icm() {
     lpr -o media=a4 -P Copieurs_Sharp $1
 }
 
-send_my_ip() {
-    get_my_ip
-    echo "$IP" | mail -s "current IP" yann.zerlaut@proton.me
+list_printers() {
+    lpstat -p | grep '^printer' | awk '{print $2}'
 }
 
 ########################################
