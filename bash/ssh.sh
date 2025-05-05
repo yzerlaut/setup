@@ -28,8 +28,8 @@ analysis_path="/home/yann.zerlaut"
 analysis_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
 
 # server adresses
-server_address="yann.zerlaut@login02.icm-institute.org"
-server_path="/network/lustre/iss02/home/yann.zerlaut"
+server_address="user@10.0.0.1"
+server_path="/home/user"
 
 # NAS adresses
 NAS_address="admin@10.100.233.33"
