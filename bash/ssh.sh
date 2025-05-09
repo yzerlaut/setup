@@ -128,7 +128,7 @@ go_to() {
             ssh $target_address
         else 
             # otherwise we go to the matching directory
-            ssh -t $target_address "cd $target_dir"
+            ssh -t $target_address "cd $target_dir; bash -l"
         fi
     fi
 }
