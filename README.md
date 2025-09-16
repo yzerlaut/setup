@@ -2,7 +2,6 @@
 
 > Instructions for a quick setup of new systems under different platforms
 
-
 ## 1) Install a `python` distribution (through [Miniforge](https://github.com/conda-forge/miniforge))
 
 - MsWin:
@@ -36,6 +35,16 @@ git clone https://github.com/yzerlaut/setup
 - [Tabby](https://github.com/eugeny/tabby): a multi-platform terminal
 
 - ...
+
+## 5) [Virtual Studio Code](https://code.visualstudio.com/) editor
+
+- [Download](https://code.visualstudio.com/download)
+
+- Set up keyboard Shortcuts with:
+
+    > Code > Preferences > Keyboard Shortcuts
+
+    and paste the [./vscode/keybindings.json](./vscode/keybindings.json)
 
 
 # Set up OpenSSH server

@@ -23,6 +23,10 @@ local1_address="yann.zerlaut@10.0.0.1"
 local2_path="/home/yann"
 local2_address="yann@10.0.0.2"
 
+# local 5
+local5_path="/home/yann.zerlaut"
+local5_address="yann.zerlaut@10.0.0.5"
+
 # ICM desktop 2
 analysis_path="/home/yann.zerlaut"
 analysis_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
@@ -79,6 +83,10 @@ pick_location() {
 	    2)
 		target_address="${local2_address}"
 		target_dir="${current_dir/$starting_path/$local2_path}"
+		;;
+	    5)
+		target_address="${local5_address}"
+		target_dir="${current_dir/$starting_path/$local5_path}"
 		;;
 	    analysis)
 		target_address="${analysis_address}"
