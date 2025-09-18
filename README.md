@@ -2,6 +2,7 @@
 
 > Instructions for a quick setup of new systems under different platforms
 
+
 ## 1) Install a `python` distribution (through [Miniforge](https://github.com/conda-forge/miniforge))
 
 - MsWin:
@@ -35,16 +36,6 @@ git clone https://github.com/yzerlaut/setup
 - [Tabby](https://github.com/eugeny/tabby): a multi-platform terminal
 
 - ...
-
-## 5) [Virtual Studio Code](https://code.visualstudio.com/) editor
-
-- [Download](https://code.visualstudio.com/download)
-
-- Set up keyboard Shortcuts with:
-
-    > Code > Preferences > Keyboard Shortcuts
-
-    and paste the [./vscode/keybindings.json](./vscode/keybindings.json)
 
 
 # Set up OpenSSH server
@@ -84,6 +75,8 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
 ```
 start-process notepad C:\Programdata\ssh\sshd_config
 ```
+
+[troubleshoot Get-Net* pb](https://superuser.com/questions/1152280/get-net-powershell-cmdlets-failing-with-invalid-class)
 
 #### Configure `sshd_config`
 
