@@ -68,20 +68,51 @@ netstat -na
 Get-NetFirewallRule -Name *OpenSSH-Server* |select Name, DisplayName, Description, Enabled
 ```
 
+[if pb with Get-Net* , troubleshooting](https://superuser.com/questions/1152280/get-net-powershell-cmdlets-failing-with-invalid-class)
+
 ```
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
 
+to stop and re-launch:
 ```
-start-process notepad C:\Programdata\ssh\sshd_config
+Stop-Service sshd
+Start-Service sshd
 ```
 
-[troubleshoot Get-Net* pb](https://superuser.com/questions/1152280/get-net-powershell-cmdlets-failing-with-invalid-class)
+#### Configure `sshd_config` on the ssh server 
 
-#### Configure `sshd_config`
+with the admin rights:
 
-[...]
+```
+notepad C:\Programdata\ssh\sshd_config
+```
 
+Set initially:
+```
+PermitRootLogin yes
+```
+copy the ssh key (see below) and then set it back to:
+```
+PermitRootLogin prohibit-password
+```
+
+#### Set up private-public key pairs
+
+On the source/client side, generate a public key
+```
+ssh-keygen -t rsa
+```
+
+Then, send the public key to the host with:
+```
+ssh-copy-id user@host
+```
+
+Or on MsWin, with: 
+```
+type %USERPROFILE%\.ssh\id_rsa.pub | ssh user@host "cat >> .ssh/authorized_keys"
+```
 
 # OS-specific setup
 
