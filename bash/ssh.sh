@@ -1,6 +1,6 @@
 # macbook 
 macbook_path="/Users/yann" # OSX laptop
-macbook_address="yann@10.0.0.2"
+macbook_address="yann@10.0.0.9"
 
 # laptop
 laptop_path="/home/yann"
@@ -14,6 +14,10 @@ desktop_address="yann.zerlaut@ICM-REBOL-LF001.icm-institute.org"
 # Sofia's desktop
 sofias_path="C:\\\\Users\\a.yann.zerlaut"
 sofias_address="a.yann.zerlaut@ICM-REBOL-WF009.icm-institute.org"
+
+# Cibele's desktop
+cibeles_path="C:\\\\Users\\a.yann.zerlaut"
+cibeles_address="a.yann.zerlaut@ICM-REBOL-WF004.icm-institute.org"
 
 # local 1
 local1_path="/home/yann.zerlaut"
@@ -75,6 +79,10 @@ pick_location() {
 	    sofias)
 		target_address="${sofias_address}"
 		target_dir="${current_dir/$starting_path/$sofias_path}"
+		;;
+	    cibeles)
+		target_address="${cibeles_address}"
+		target_dir="${current_dir/$starting_path/$cibeles_path}"
 		;;
 	    1)
 		target_address="${local1_address}"
