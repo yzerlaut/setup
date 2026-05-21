@@ -4,8 +4,12 @@
 #alias biblio='python -m biblio'
 
 remove_spaces() {
-    find $1 -type d | perl -lne '($new = $_) =~ s/ /_/g; print "mv \"$_\" $new"'
-    find $1 -type f | perl -lne '($new = $_) =~ s/ /_/g; print "mv \"$_\" $new"'
+    find $1 -type d | perl -lne '($new = $_) =~ s/ /_/g; print "mv \"$_\" $new"' > rm_spaces.sh
+    bash rm_spaces.sh
+    rm rm_spaces.sh
+    find $1 -type f | perl -lne '($new = $_) =~ s/ /_/g; print "mv \"$_\" $new"' > rm_spaces.sh
+    bash rm_spaces.sh
+    rm rm_spaces.sh
 }
 
 
