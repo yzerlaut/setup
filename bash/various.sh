@@ -3,6 +3,12 @@
 ########################################
 #alias biblio='python -m biblio'
 
+remove_spaces() {
+    find $1 -type d | perl -lne '($new = $_) =~ s/ /_/g; print "mv \"$_\" $new"'
+    find $1 -type f | perl -lne '($new = $_) =~ s/ /_/g; print "mv \"$_\" $new"'
+}
+
+
 get_my_ip() {
     IP=$(echo $(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'))
     echo $IP

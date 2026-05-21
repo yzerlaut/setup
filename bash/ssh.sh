@@ -39,6 +39,10 @@ analysis_address="yann.zerlaut@UMR-REBOL-LF001.icm-institute.org"
 server_address="user@10.0.0.1"
 server_path="/home/user"
 
+# server adresses
+sallys_address="user@sallys.local"
+sallys_path="/home/user"
+
 # NAS adresses
 NAS_address="admin@10.100.233.33"
 NAS_path="/volume1/Yann"
@@ -107,6 +111,10 @@ pick_location() {
 	    server)
 		target_address="${server_address}"
 		target_dir="${current_dir/$starting_path/$server_path}"
+		;;
+	    sallys)
+		target_address="${sallys_address}"
+		target_dir="${current_dir/$starting_path/$sallys_path}"
 		;;
 	    NAS)
 		target_address="${NAS_address}"
